@@ -703,3 +703,49 @@ footer {
       height: 350px;
   }
 }
+/* Mobile menu styles */
+@media (max-width: 768px) {
+  .nav-links {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background-color: var(--white);
+      flex-direction: column;
+      padding: 2rem;
+      box-shadow: 0 5px 15px var(--shadow);
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+  }
+  
+  .nav-links.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+  }
+  
+  .nav-links li {
+      width: 100%;
+      text-align: center;
+      margin: 1rem 0;
+  }
+  
+  .nav-links a {
+      display: block;
+      padding: 1rem;
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-links a:last-child {
+      border-bottom: none;
+  }
+}
+
+/* Prevent body scrolling when menu is open */
+body.no-scroll {
+  overflow: hidden;
+}
