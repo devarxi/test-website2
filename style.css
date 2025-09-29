@@ -985,42 +985,68 @@ body.no-scroll {
       gap: 0.8rem !important;
   }
 }
-/* Logo Image Styling */
+/* ===== LOGO STYLING ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 50px; /* Fixed height for consistency */
+}
+
 .logo-image {
-  height: 40px; /* Adjust based on your logo dimensions */
+  height: 35px; /* Smaller default size */
   width: auto;
   transition: var(--transition);
+  object-fit: contain;
 }
 
 /* Desktop logo size */
 @media (min-width: 769px) {
   .logo-image {
-      height: 45px; /* Slightly larger on desktop */
+      height: 40px; /* Slightly larger but not too big */
   }
 }
 
 /* Mobile logo size */
 @media (max-width: 768px) {
   .logo-image {
-      height: 35px; /* Slightly smaller on mobile */
+      height: 32px;
   }
 }
 
 /* Small mobile adjustments */
 @media (max-width: 480px) {
   .logo-image {
-      height: 32px;
+      height: 28px;
   }
 }
 
-/* Remove the old text logo styles and replace with image container styles */
-.logo {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-/* Remove the old logo::after effect since we're using an image */
+/* Remove the old text logo styles */
 .logo::after {
   display: none;
+}
+
+/* Fix mobile icon sizes */
+@media (max-width: 768px) {
+  .nav-icon, .mobile-menu-btn {
+      width: 35px !important;
+      height: 35px !important;
+      font-size: 1rem !important;
+  }
+  
+  .nav-icons {
+      gap: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-icon, .mobile-menu-btn {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 0.9rem !important;
+  }
+  
+  .nav-icons {
+      gap: 0.8rem !important;
+  }
 }
