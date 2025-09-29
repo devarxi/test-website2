@@ -960,3 +960,67 @@ body.no-scroll {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
+/* Fix mobile icon sizes */
+@media (max-width: 768px) {
+  .nav-icon, .mobile-menu-btn {
+      width: 35px !important;
+      height: 35px !important;
+      font-size: 1rem !important;
+  }
+  
+  .nav-icons {
+      gap: 1rem !important;
+  }
+}
+
+/* Additional responsive improvements */
+@media (max-width: 480px) {
+  .nav-icon, .mobile-menu-btn {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 0.9rem !important;
+  }
+  
+  .nav-icons {
+      gap: 0.8rem !important;
+  }
+}
+/* Logo Image Styling */
+.logo-image {
+  height: 40px; /* Adjust based on your logo dimensions */
+  width: auto;
+  transition: var(--transition);
+}
+
+/* Desktop logo size */
+@media (min-width: 769px) {
+  .logo-image {
+      height: 45px; /* Slightly larger on desktop */
+  }
+}
+
+/* Mobile logo size */
+@media (max-width: 768px) {
+  .logo-image {
+      height: 35px; /* Slightly smaller on mobile */
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .logo-image {
+      height: 32px;
+  }
+}
+
+/* Remove the old text logo styles and replace with image container styles */
+.logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Remove the old logo::after effect since we're using an image */
+.logo::after {
+  display: none;
+}
