@@ -990,63 +990,379 @@ body.no-scroll {
   display: flex;
   align-items: center;
   position: relative;
-  height: 50px; /* Fixed height for consistency */
+  height: 110px; /* Match the desktop logo height */
+  z-index: 1001;
+  min-width: 220px; /* Increased to accommodate larger logo */
 }
 
 .logo-image {
-  height: 35px; /* Smaller default size */
-  width: auto;
+  height: 110px !important; /* Match desktop size as default */
+  width: auto !important;
+  max-width: none !important;
   transition: var(--transition);
   object-fit: contain;
 }
 
-/* Desktop logo size */
+/* Desktop logo size - very large and prominent */
 @media (min-width: 769px) {
   .logo-image {
-      height: 40px; /* Slightly larger but not too big */
+      height: 110px !important;
+      min-height: 110px !important;
+  }
+  
+  .logo {
+      height: 110px; /* Ensure container matches logo height */
+      min-width: 220px;
   }
 }
 
-/* Mobile logo size */
+/* Mobile logo size - much larger */
 @media (max-width: 768px) {
   .logo-image {
-      height: 32px;
+      height: 90px !important;
+      min-height: 90px !important;
+  }
+  
+  .logo {
+      height: 90px; /* Match mobile logo height */
+      min-width: 180px;
   }
 }
 
 /* Small mobile adjustments */
 @media (max-width: 480px) {
   .logo-image {
-      height: 28px;
-  }
-}
-
-/* Remove the old text logo styles */
-.logo::after {
-  display: none;
-}
-
-/* Fix mobile icon sizes */
-@media (max-width: 768px) {
-  .nav-icon, .mobile-menu-btn {
-      width: 35px !important;
-      height: 35px !important;
-      font-size: 1rem !important;
+      height: 80px !important;
+      min-height: 80px !important;
   }
   
-  .nav-icons {
-      gap: 1rem !important;
+  .logo {
+      height: 80px; /* Match small mobile logo height */
+      min-width: 160px;
+  }
+}
+
+/* Header adjustments for larger logo */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--white);
+  z-index: 1000;
+  padding: 2.5rem 0 !important; /* Increased padding for larger logo */
+  box-shadow: 0 2px 10px var(--shadow);
+  transition: var(--transition);
+  border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+}
+
+header.scrolled {
+  padding: 1.8rem 0 !important; /* Increased scrolled padding */
+}
+
+/* Header container adjustments */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 110px !important; /* Match largest logo height */
+  height: auto !important;
+  gap: 1rem; /* Add gap between elements for better spacing */
+}
+
+/* Adjust hero section margins for much larger header */
+.hero {
+  margin-top: 140px !important; /* Increased margin for larger header */
+}
+
+.products-hero, .about-hero, .contact-hero {
+  margin-top: 140px !important; /* Increased margin for larger header */
+}
+
+/* Navigation adjustments for larger header */
+.nav-links {
+  flex: 1;
+  justify-content: center;
+  margin: 0 2rem; /* Add some margin for better spacing */
+}
+
+/* Ensure navigation icons are properly aligned with larger logo */
+.nav-icons {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Consistent gap between icons */
+}
+
+/* Make navigation icons larger to match scale */
+.nav-icon, .mobile-menu-btn {
+  width: 55px !important; /* Slightly larger */
+  height: 55px !important;
+  font-size: 1.5rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .nav-icon, .mobile-menu-btn {
+      width: 50px !important;
+      height: 50px !important;
+      font-size: 1.4rem !important;
+  }
+  
+  /* Adjust mobile menu positioning for larger header */
+  .nav-links {
+      top: 110px !important; /* Match header height */
+      margin: 0;
+  }
+  
+  /* Adjust header container for mobile */
+  .header-container {
+      min-height: 90px !important; /* Match mobile logo height */
+      gap: 0.5rem;
+  }
+  
+  /* Adjust hero margins for mobile */
+  .hero, .products-hero, .about-hero, .contact-hero {
+      margin-top: 100px !important; /* Adjusted for mobile header */
   }
 }
 
 @media (max-width: 480px) {
   .nav-icon, .mobile-menu-btn {
-      width: 32px !important;
-      height: 32px !important;
-      font-size: 0.9rem !important;
+      width: 45px !important;
+      height: 45px !important;
+      font-size: 1.3rem !important;
   }
   
-  .nav-icons {
-      gap: 0.8rem !important;
+  .header-container {
+      min-height: 80px !important; /* Match small mobile logo height */
   }
+  
+  .nav-links {
+      top: 80px !important; /* Match small mobile header height */
+  }
+  
+  .hero, .products-hero, .about-hero, .contact-hero {
+      margin-top: 90px !important; /* Adjusted for small mobile header */
+  }
+}
+
+/* Prevent any potential layout shifts */
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure smooth transitions for header resizing */
+header, .header-container, .logo, .logo-image {
+  transition: all 0.3s ease;
+}
+
+/* Hide cart and user icons */
+.nav-icon:nth-child(2), /* Cart icon */
+.nav-icon:nth-child(3) { /* User icon */
+    display: none !important;
+}
+
+/* Adjust navigation spacing when icons are removed */
+.nav-icons {
+    gap: 1rem !important;
+}
+/* Address link styling */
+.address-link {
+  color: var(--light-text);
+  transition: var(--transition);
+}
+
+.address-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Social media icons */
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: var(--transition);
+  color: var(--white);
+  font-size: 1.2rem;
+}
+
+.social-link:hover {
+  background-color: var(--accent);
+  color: var(--primary);
+  transform: translateY(-3px);
+}
+
+/* ===== CLICKABLE CONTACT METHODS ===== */
+.clickable-contact {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px var(--shadow);
+  transition: var(--transition);
+  border: 2px solid transparent;
+  margin-bottom: 1rem;
+}
+
+.clickable-contact:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.15);
+  background-color: var(--secondary);
+  border-color: var(--accent);
+  text-decoration: none;
+  color: inherit;
+}
+
+.clickable-contact .contact-method {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  margin: 0;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.clickable-contact .contact-method:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Contact details styling */
+.contact-details h3 {
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.contact-email,
+.contact-phone,
+.contact-address {
+  color: var(--light-text);
+  margin-bottom: 0.3rem;
+}
+
+.contact-note {
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+/* Regular contact method (for social media) */
+.contact-method:not(.clickable-contact) {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px var(--shadow);
+  transition: var(--transition);
+  margin-bottom: 1rem;
+}
+
+.contact-method:not(.clickable-contact):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.15);
+}
+
+/* Contact icon styling */
+.contact-icon {
+  font-size: 1.5rem;
+  color: var(--accent);
+  min-width: 30px;
+  transition: var(--transition);
+}
+
+.clickable-contact:hover .contact-icon {
+  transform: scale(1.1);
+  color: var(--primary);
+}
+
+/* Social Media Icons */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  transition: var(--transition);
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* WhatsApp specific styling */
+.whatsapp-link {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+}
+
+.whatsapp-link:hover {
+  background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
+  transform: translateY(-3px) scale(1.1);
+}
+
+/* Instagram specific styling */
+.instagram-link {
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+}
+
+.instagram-link:hover {
+  background: linear-gradient(45deg, #FD1D1D, #E1306C, #C13584, #833AB4, #5851DB, #405DE6);
+  transform: translateY(-3px) scale(1.1);
+}
+
+/* Social icons in contact section */
+.contact-method .social-link {
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-method .social-link:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Footer social links */
+footer .social-link {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+footer .whatsapp-link:hover,
+footer .instagram-link:hover {
+  background: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* SVG icon styling */
+.social-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-method .social-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+footer .social-link svg {
+  width: 18px;
+  height: 18px;
 }
