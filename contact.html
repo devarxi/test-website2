@@ -16,17 +16,19 @@
                 <img src="images/logo.jpg" alt="Nakkashi" class="logo-image">
             </a>
             
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="our_gallery.html">Our Gallery</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
-            </ul>
-            
-            
             <div class="nav-icons">
-                <div class="nav-icon">🔍</div>
                 <div class="mobile-menu-btn">☰</div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-nav-menu">
+                <div class="mobile-nav-close">✕</div>
+                <ul class="mobile-nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our_gallery.html">Our Gallery</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
             </div>
         </div>
     </header>
@@ -138,33 +140,6 @@
         </div>
     </footer>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-        });
-
-        // Parse the document body and replace all emojis with Twitter's emojis
-        document.addEventListener('DOMContentLoaded', function() {
-            twemoji.parse(document.body, {
-                folder: 'svg',
-                ext: '.svg'
-            });
-        });
-    </script>
     <script src="script.js"></script>
 </body>
 </html>

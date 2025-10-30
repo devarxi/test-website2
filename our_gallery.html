@@ -16,16 +16,19 @@
                 <img src="images/logo.jpg" alt="Nakkashi" class="logo-image">
             </a>
             
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="our_gallery.html" class="active">Our Gallery</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            
             <div class="nav-icons">
-                <div class="nav-icon">🔍</div>
                 <div class="mobile-menu-btn">☰</div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-nav-menu">
+                <div class="mobile-nav-close">✕</div>
+                <ul class="mobile-nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our_gallery.html" class="active">Our Gallery</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
         </div>
     </header>
@@ -38,57 +41,58 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="products-section">
+    <!-- Genre Filter Section -->
+    <section class="genre-filter-section">
         <div class="container">
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1575089976121-9ed017eaa3c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Handmade Vase" class="product-image">
-                    <div class="product-overlay">
-                        <h3 class="product-name">Handmade Vase</h3>
-                        <p class="product-price">Traditional Pottery</p>
+            <h2 class="section-title">Browse by Genre</h2>
+            <p class="section-subtitle">Select a genre to explore our collection</p>
+            
+            <div class="genre-buttons">
+                <button class="genre-btn" data-genre="sketches">
+                    <div class="genre-icon">✏️</div>
+                    <span>Sketches</span>
+                </button>
+                <button class="genre-btn" data-genre="wallpieces">
+                    <div class="genre-icon">🖼️</div>
+                    <span>Wall Pieces</span>
+                </button>
+                <button class="genre-btn" data-genre="other">
+                    <div class="genre-icon">🌟</div>
+                    <span>Other Art</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <!-- Initial State - No genre selected -->
+            <div class="initial-state" id="initialState">
+                <div class="initial-icon">🎨</div>
+                <h2>Select a Genre to Begin</h2>
+                <p>Choose from the genres above to explore our collection of artworks</p>
+            </div>
+
+            <!-- Gallery Content (shown when genre is selected) -->
+            <div class="gallery-content" id="galleryContent" style="display: none;">
+                <div class="gallery-header">
+                    <h2 class="gallery-title" id="galleryTitle"></h2>
+                    <div class="gallery-stats">
+                        <span id="artworkCount">0</span> artworks
                     </div>
                 </div>
                 
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Wool Scarf" class="product-image">
-                    <div class="product-overlay">
-                        <h3 class="product-name">Wool Scarf</h3>
-                        <p class="product-price">Handwoven Textile</p>
-                    </div>
+                <div class="art-grid" id="artGrid">
+                    <!-- Artworks will be dynamically loaded here -->
                 </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1581338834647-b0fb40704e21?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Wooden Toy" class="product-image">
-                    <div class="product-overlay">
-                        <h3 class="product-name">Wooden Toy</h3>
-                        <p class="product-price">Handcrafted Woodwork</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Ceramic Plate" class="product-image">
-                    <div class="product-overlay">
-                        <h3 class="product-name">Ceramic Plate</h3>
-                        <p class="product-price">Artistic Ceramics</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1588514912908-8f5891714f8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Handwoven Basket" class="product-image">
-                    <div class="product-overlay">
-                        <h3 class="product-name">Handwoven Basket</h3>
-                        <p class="product-price">Traditional Weaving</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1618979251890-21a747baf1de?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Embroidered Cushion" class="product-image">
-                    <div class="product-overlay">
-                        <h3 class="product-name">Embroidered Cushion</h3>
-                        <p class="product-price">Textile Art</p>
-                    </div>
-                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">🎨</div>
+                <h3>No Artworks Found</h3>
+                <p>We're currently adding more pieces to this genre. Check back soon!</p>
             </div>
         </div>
     </section>
@@ -135,6 +139,22 @@
         </div>
     </footer>
 
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-info">
+                <p class="modal-description" id="modalDescription"></p>
+                <div class="modal-meta">
+                    <span class="modal-genre" id="modalGenre"></span>
+                    <span class="modal-size" id="modalSize"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="gallery.js"></script>
 </body>
 </html>

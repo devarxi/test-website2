@@ -1,4 +1,5 @@
-// script.js for Nakkashi Art Gallery - FIXED VERSION
+
+// script.js for Nakkashi Art Gallery - UPDATED FOR BURGER MENU ONLY
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality when DOM is fully loaded
     initNavigation();
@@ -7,9 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initNewsletterForm();
     initScrollAnimations();
-    initSearchBar();
-    initCartIcon();
-    initUserIcon();
     
     // Initialize Twemoji for consistent emoji rendering
     if (typeof twemoji !== 'undefined') {
@@ -18,18 +16,20 @@ document.addEventListener('DOMContentLoaded', function() {
             ext: '.svg'
         });
     }
-  });
-  
-  // Navigation functionality - FIXED
-  function initNavigation() {
+});
+
+// Navigation functionality - UPDATED FOR BURGER MENU ONLY
+function initNavigation() {
     const header = document.querySelector('header');
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+    const mobileNavMenu = document.querySelector('.mobile-nav-menu');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
     
     // Check if elements exist before adding event listeners
-    if (!header || !mobileMenuBtn || !navLinks) {
-      console.warn('Navigation elements not found. Skipping navigation initialization.');
-      return;
+    if (!header || !mobileMenuBtn || !mobileNavMenu || !mobileNavClose) {
+        console.warn('Navigation elements not found. Skipping navigation initialization.');
+        return;
     }
     
     // Header scroll effect
@@ -44,124 +44,50 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu toggle
     mobileMenuBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        navLinks.classList.toggle('active');
-        mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        
-        // Prevent body scrolling when menu is open
-        if (navLinks.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
+        mobileNavMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        document.body.classList.add('no-scroll');
+    });
+    
+    // Close mobile menu
+    mobileNavClose.addEventListener('click', function() {
+        mobileNavMenu.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.classList.remove('no-scroll');
     });
     
     // Close mobile menu when clicking on a link
-    const navItems = document.querySelectorAll('.nav-links a');
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            navLinks.classList.remove('active');
-            mobileMenuBtn.textContent = '☰';
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileNavMenu.classList.remove('active');
             document.body.style.overflow = '';
+            document.body.classList.remove('no-scroll');
         });
     });
     
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(event) {
-      if (navLinks.classList.contains('active') && 
-          !navLinks.contains(event.target) && 
-          !mobileMenuBtn.contains(event.target)) {
-          navLinks.classList.remove('active');
-          mobileMenuBtn.textContent = '☰';
-          document.body.style.overflow = '';
-      }
-    });
-  }
-  
-  // Search functionality - NEW
-  function initSearchBar() {
-    const searchIcon = document.querySelector('.nav-icon');
-    
-    if (!searchIcon) {
-      console.warn('Search icon not found. Skipping search initialization.');
-      return;
-    }
-    
-    // Create search overlay
-    const searchOverlay = document.createElement('div');
-    searchOverlay.className = 'search-overlay';
-    searchOverlay.innerHTML = `
-      <div class="search-container">
-        <input type="text" placeholder="Search products..." class="search-input">
-        <button class="search-close">✕</button>
-      </div>
-    `;
-    
-    document.body.appendChild(searchOverlay);
-    
-    const searchInput = searchOverlay.querySelector('.search-input');
-    const searchClose = searchOverlay.querySelector('.search-close');
-    
-    // Toggle search overlay
-    searchIcon.addEventListener('click', function() {
-      searchOverlay.classList.add('active');
-      searchInput.focus();
+        if (mobileNavMenu.classList.contains('active') && 
+            !mobileNavMenu.contains(event.target) && 
+            !mobileMenuBtn.contains(event.target)) {
+            mobileNavMenu.classList.remove('active');
+            document.body.style.overflow = '';
+            document.body.classList.remove('no-scroll');
+        }
     });
     
-    // Close search overlay
-    searchClose.addEventListener('click', function() {
-      searchOverlay.classList.remove('active');
+    // Close mobile menu with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && mobileNavMenu.classList.contains('active')) {
+            mobileNavMenu.classList.remove('active');
+            document.body.style.overflow = '';
+            document.body.classList.remove('no-scroll');
+        }
     });
-    
-    // Close when clicking outside search container
-    searchOverlay.addEventListener('click', function(e) {
-      if (e.target === searchOverlay) {
-        searchOverlay.classList.remove('active');
-      }
-    });
-    
-    // Handle search input
-    searchInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        performSearch(searchInput.value);
-      }
-    });
-    
-    function performSearch(query) {
-      if (!query || query.trim() === '') {
-        showNotification('Please enter a search term', 'error');
-        return;
-      }
-      
-      showNotification(`Searching for: ${query}`, 'info');
-      // In a real implementation, you would redirect to a search page or filter results
-      searchOverlay.classList.remove('active');
-    }
-  }
-  
-  // Cart icon functionality - NEW
-  function initCartIcon() {
-    const cartIcon = document.querySelectorAll('.nav-icon')[1]; // Second icon is cart
-    
-    if (!cartIcon) return;
-    
-    cartIcon.addEventListener('click', function() {
-      showNotification('Cart functionality coming soon!', 'info');
-    });
-  }
-  
-  // User icon functionality - NEW
-  function initUserIcon() {
-    const userIcon = document.querySelectorAll('.nav-icon')[2]; // Third icon is user
-    
-    if (!userIcon) return;
-    
-    userIcon.addEventListener('click', function() {
-      showNotification('User account functionality coming soon!', 'info');
-    });
-  }
-  
-  // Image zoom functionality
-  function initImageZoom() {
+}
+
+// Image zoom functionality
+function initImageZoom() {
     const productImages = document.querySelectorAll('.product-image');
     
     productImages.forEach(image => {
@@ -203,10 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'hidden'; // Prevent scrolling
         });
     });
-  }
-  
-  // Contact form functionality
-  function initContactForm() {
+}
+
+// Contact form functionality
+function initContactForm() {
     const contactForm = document.querySelector('.contact-form form');
     
     if (contactForm) {
@@ -234,10 +160,10 @@ document.addEventListener('DOMContentLoaded', function() {
             contactForm.reset();
         });
     }
-  }
-  
-  // Newsletter form functionality
-  function initNewsletterForm() {
+}
+
+// Newsletter form functionality
+function initNewsletterForm() {
     const newsletterForm = document.querySelector('.newsletter-form');
     
     if (newsletterForm) {
@@ -255,10 +181,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-  }
-  
-  // Smooth scrolling for navigation links
-  function initSmoothScrolling() {
+}
+
+// Smooth scrolling for navigation links
+function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
     
     navLinks.forEach(link => {
@@ -280,10 +206,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-  }
-  
-  // Scroll animations for elements
-  function initScrollAnimations() {
+}
+
+// Scroll animations for elements
+function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('.product-card, .value-card, .team-member');
     
     const observer = new IntersectionObserver((entries) => {
@@ -302,16 +228,16 @@ document.addEventListener('DOMContentLoaded', function() {
         element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         observer.observe(element);
     });
-  }
-  
-  // Utility function to validate email
-  function validateEmail(email) {
+}
+
+// Utility function to validate email
+function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
-  }
-  
-  // Notification system
-  function showNotification(message, type = 'info') {
+}
+
+// Notification system
+function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
@@ -334,11 +260,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 300);
     }, 3000);
-  }
-  
-  // Add CSS for JavaScript components
-  const style = document.createElement('style');
-  style.textContent = `
+}
+
+// Add CSS for JavaScript components
+const style = document.createElement('style');
+style.textContent = `
     /* Image zoom overlay */
     .image-zoom-overlay {
         position: fixed;
@@ -402,69 +328,5 @@ document.addEventListener('DOMContentLoaded', function() {
     .notification.info {
         background-color: #2196F3;
     }
-    
-    /* Mobile menu active state */
-    .nav-links.active {
-        display: flex !important;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        padding: 20px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Search overlay */
-    .search-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        z-index: 10000;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        padding-top: 100px;
-    }
-    
-    .search-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .search-container {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 600px;
-        display: flex;
-        align-items: center;
-    }
-    
-    .search-input {
-        flex: 1;
-        padding: 15px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-        outline: none;
-    }
-    
-    .search-close {
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        margin-left: 15px;
-        color: #333;
-    }
-  `;
-  document.head.appendChild(style);
+`;
+document.head.appendChild(style);
