@@ -2488,3 +2488,134 @@ footer .social-link svg {
       padding: 0.5rem;
   }
 }
+/* ===== HEADER HEIGHT FIX - KEEP LARGE LOGO ===== */
+
+/* Reduce header padding significantly but keep logo large */
+header {
+  padding: 0.5rem 0 !important; /* Reduced from 2.8rem */
+  min-height: 80px !important; /* Reduced overall height */
+}
+
+header.scrolled {
+  padding: 0.3rem 0 !important; /* Reduced scrolled padding */
+}
+
+/* Keep the logo container the same size but adjust positioning */
+.logo {
+  height: 120px !important; /* Slightly reduced but still large */
+  min-width: 200px !important;
+  display: flex;
+  align-items: center;
+}
+
+/* Maintain large logo image size */
+.logo-image {
+  height: 120px !important; /* Still very large and prominent */
+  width: auto !important;
+  max-width: none !important;
+  object-fit: contain;
+}
+
+/* Adjust header container for new height */
+.header-container {
+  min-height: 80px !important; /* Reduced container height */
+  height: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Adjust mobile menu button positioning */
+.mobile-menu-btn {
+  width: 45px;
+  height: 45px;
+  margin: 0;
+}
+
+/* Fix the mobile nav menu positioning */
+.mobile-nav-menu {
+  padding-top: 100px; /* Adjust for new header height */
+}
+
+/* ===== ADJUST HERO MARGINS FOR NEW HEADER HEIGHT ===== */
+
+/* Slideshow margin adjustment */
+.featured-slideshow {
+  margin-top: 100px !important; /* Reduced from 140px */
+}
+
+/* Other hero sections */
+.hero, .products-hero, .about-hero, .contact-hero {
+  margin-top: 100px !important; /* Reduced from 160px/120px */
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+
+@media (max-width: 768px) {
+  header {
+      padding: 0.4rem 0 !important;
+      min-height: 70px !important;
+  }
+  
+  .logo {
+      height: 100px !important;
+      min-width: 180px !important;
+  }
+  
+  .logo-image {
+      height: 100px !important;
+  }
+  
+  .header-container {
+      min-height: 70px !important;
+  }
+  
+  .featured-slideshow,
+  .hero, .products-hero, .about-hero, .contact-hero {
+      margin-top: 90px !important;
+  }
+  
+  .mobile-nav-menu {
+      padding-top: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+      padding: 0.3rem 0 !important;
+      min-height: 60px !important;
+  }
+  
+  .logo {
+      height: 90px !important;
+      min-width: 160px !important;
+  }
+  
+  .logo-image {
+      height: 90px !important;
+  }
+  
+  .header-container {
+      min-height: 60px !important;
+  }
+  
+  .featured-slideshow,
+  .hero, .products-hero, .about-hero, .contact-hero {
+      margin-top: 80px !important;
+  }
+  
+  .mobile-nav-menu {
+      padding-top: 80px;
+  }
+}
+
+/* ===== ENSURE PROPER Z-INDEX FOR HEADER ===== */
+header {
+  z-index: 1000;
+}
+
+.featured-slideshow {
+  position: relative;
+  z-index: 1;
+}
+
