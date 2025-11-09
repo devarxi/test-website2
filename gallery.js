@@ -1,4 +1,4 @@
-// gallery.js - Updated with slider functionality
+// gallery.js - Updated with custom dimension text
 document.addEventListener("DOMContentLoaded", function () {
   initGallery();
 });
@@ -12,7 +12,7 @@ function initGallery() {
   const galleryContent = document.getElementById("galleryContent");
   const emptyState = document.getElementById("emptyState");
 
-  // Updated artwork data with multiple images
+  // Updated artwork data with custom dimension text
   const artworks = [
     // Sketches
     {
@@ -20,8 +20,8 @@ function initGallery() {
       title: "",
       description: "",
       genre: "sketches",
-      images: ["images/art/sketch1.jpg"], // Multiple images
-      size: "12x16 inches",
+      images: ["images/art/sketch1.jpg"],
+      size: "Customized by style and size",
       featured: false,
     },
     {
@@ -30,7 +30,7 @@ function initGallery() {
       description: "",
       genre: "sketches",
       images: ["images/art/sketch2.jpg"],
-      size: "9x12 inches",
+      size: "Customized by style and size",
       featured: false,
     },
     {
@@ -38,8 +38,8 @@ function initGallery() {
       title: "",
       description: "",
       genre: "sketches",
-      images: ["images/art/sketch3.jpg"], // Multiple images
-      size: "11x14 inches",
+      images: ["images/art/sketch3.jpg"],
+      size: "Customized by style and size",
       featured: false,
     },
     {
@@ -48,7 +48,7 @@ function initGallery() {
       description: "",
       genre: "sketches",
       images: ["images/art/sketch4.jpg"],
-      size: "14x20 inches",
+      size: "Customized by style and size",
       featured: true,
     },
     {
@@ -57,7 +57,7 @@ function initGallery() {
       description: "",
       genre: "sketches",
       images: ["images/art/sketch5.jpg"],
-      size: "12x16 inches",
+      size: "Customized by style and size",
       featured: false,
     },
     {
@@ -66,7 +66,7 @@ function initGallery() {
       description: "",
       genre: "sketches",
       images: ["images/art/sketch6.jpg"],
-      size: "12x16 inches",
+      size: "Customized by style and size",
       featured: false,
     },
     {
@@ -75,7 +75,7 @@ function initGallery() {
       description: "",
       genre: "sketches",
       images: ["images/art/sketch7.jpg"],
-      size: "12x16 inches",
+      size: "Customized by style and size",
       featured: false,
     },
     {
@@ -84,7 +84,7 @@ function initGallery() {
       description: "",
       genre: "sketches",
       images: ["images/art/sketch8.jpg"],
-      size: "12x16 inches",
+      size: "Customized by style and size",
       featured: false,
     },
     {
@@ -93,7 +93,7 @@ function initGallery() {
       description: "",
       genre: "sketches",
       images: ["images/art/sketch9.jpg"],
-      size: "12x16 inches",
+      size: "Customized by style and size",
       featured: false,
     },
     {
@@ -102,7 +102,7 @@ function initGallery() {
       description: "",
       genre: "sketches",
       images: ["images/art/sketch10.jpg"],
-      size: "12x16 inches",
+      size: "Customized by style and size",
       featured: false,
     },
     {
@@ -111,7 +111,7 @@ function initGallery() {
       description: "",
       genre: "sketches",
       images: ["images/art/sketch11.jpg"],
-      size: "12x16 inches",
+      size: "Customized by style and size",
       featured: false,
     },
     {
@@ -120,7 +120,7 @@ function initGallery() {
       description: "",
       genre: "sketches",
       images: ["images/art/sketch12.jpg"],
-      size: "12x16 inches",
+      size: "Customized by style and size",
       featured: false,
     },
 
@@ -130,8 +130,8 @@ function initGallery() {
       title: "Leaf n Line.",
       description: "Geomatric Design, With Monstera & Banana Leaves.",
       genre: "wallpieces",
-      images: ["images/art/wallpiece1.jpg"], // Multiple images
-      size: "24x36 inches",
+      images: ["images/art/wallpiece1.jpg"],
+      size: "Customized by style and size | Handcrafted",
       featured: false,
     },
     {
@@ -140,7 +140,7 @@ function initGallery() {
       description: "",
       genre: "wallpieces",
       images: ["images/art/wallpiece2.jpg"],
-      size: "30x40 inches",
+      size: "Customized by style and size | Handcrafted",
       featured: false,
     },
     {
@@ -149,7 +149,7 @@ function initGallery() {
       description: "",
       genre: "wallpieces",
       images: ["images/art/wallpiece3.jpg"],
-      size: "20x20 inches",
+      size: "Customized by style and size | Handcrafted",
       featured: false,
     },
     {
@@ -158,17 +158,16 @@ function initGallery() {
       description: "",
       genre: "wallpieces",
       images: ["images/art/wallpiece4.jpg"],
-      size: "20x20 inches",
+      size: "Customized by style and size | Handcrafted",
       featured: true,
     },
     {
       id: 17,
       title: "Divine Masculine",
-      description:
-        "An art work showcasing the blend of 'lord Krishna & lord shiva'.",
+      description: "An art work showcasing the blend of 'lord Krishna & lord shiva'.",
       genre: "wallpieces",
       images: ["images/art/wallpiece5.jpg"],
-      size: "20x20 inches",
+      size: "Customized by style and size | Handcrafted",
       featured: false,
     },
     {
@@ -177,7 +176,7 @@ function initGallery() {
       description: "",
       genre: "wallpieces",
       images: ["images/art/wallpiece6.jpg"],
-      size: "20x20 inches",
+      size: "Customized by style and size | Handcrafted",
       featured: false,
     },
     {
@@ -186,7 +185,7 @@ function initGallery() {
       description: "",
       genre: "wallpieces",
       images: ["images/art/wallpiece7.jpg", "images/art/wallpiece7_2.jpg"],
-      size: "20x20 inches",
+      size: "Customized by style and size | Handcrafted",
       featured: true,
     },
     {
@@ -195,7 +194,7 @@ function initGallery() {
       description: "",
       genre: "wallpieces",
       images: ["images/art/wallpiece9.jpg"],
-      size: "20x20 inches",
+      size: "Customized by style and size | Handcrafted",
       featured: false,
     },
     {
@@ -204,7 +203,7 @@ function initGallery() {
       description: "",
       genre: "wallpieces",
       images: ["images/art/wallpiece8.jpg"],
-      size: "20x20 inches",
+      size: "Customized by style and size | Handcrafted",
       featured: false,
     },
     {
@@ -213,18 +212,18 @@ function initGallery() {
       description: "",
       genre: "wallpieces",
       images: ["images/art/wallpiece10.jpg"],
-      size: "20x20 inches",
+      size: "Customized by style and size | Handcrafted",
       featured: false,
     },
 
-    // Other Art
+    // Other Art (Conceptual Interior)
     {
       id: 23,
       title: "Play Palette",
       description: "",
       genre: "other",
       images: ["images/art/conc_int1.jpg", "images/art/conc_int1_2.jpg"],
-      size: "Variable dimensions",
+      size: "Customized by style and size | Handcrafted",
       featured: true,
     },
     {
@@ -233,7 +232,7 @@ function initGallery() {
       description: "",
       genre: "other",
       images: ["images/art/conc_int2.jpg", "images/art/conc_int2_2.jpg"],
-      size: "Variable dimensions",
+      size: "Customized by style and size | Handcrafted",
       featured: true,
     },
   ];
@@ -333,21 +332,6 @@ function initGallery() {
     return artCard;
   }
 
-    // Add click event for viewing details
-    const viewBtn = artCard.querySelector(".art-view-btn");
-    viewBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      openArtworkModal(artwork);
-    });
-
-    // Add click event for the entire card
-    artCard.addEventListener("click", function () {
-      openArtworkModal(artwork);
-    });
-
-    return artCard;
-  }
-
   function getGenreDisplayName(genre) {
     const genreNames = {
       sketches: "Sketch",
@@ -366,106 +350,47 @@ function initGallery() {
     modalContent.innerHTML = "";
 
     // Create slider structure
-  modalContent.innerHTML = `
-  <span class="modal-close" id="modalClose">&times;</span>
-  <div class="slider-container">
-    <div class="slider-track" id="sliderTrack">
-      ${artwork.images.map((image, index) => `
-        <div class="slide ${index === 0 ? 'active' : ''}">
-          <img src="${image}" alt="${artwork.title} - Image ${index + 1}" class="modal-image">
+    modalContent.innerHTML = `
+      <span class="modal-close" id="modalClose">&times;</span>
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          ${artwork.images.map((image, index) => `
+            <div class="slide ${index === 0 ? 'active' : ''}">
+              <img src="${image}" alt="${artwork.title} - Image ${index + 1}" class="modal-image">
+            </div>
+          `).join('')}
         </div>
-      `).join('')}
-    </div>
-    
-    ${artwork.images.length > 1 ? `
-      <button class="slider-nav slider-prev" id="sliderPrev">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-        </svg>
-      </button>
-      <button class="slider-nav slider-next" id="sliderNext">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-        </svg>
-      </button>
-      
-      <div class="slider-dots" id="sliderDots">
-        ${artwork.images.map((_, index) => `
-          <span class="dot ${index === 0 ? 'active' : ''}" data-index="${index}"></span>
-        `).join('')}
+        
+        ${artwork.images.length > 1 ? `
+          <button class="slider-nav slider-prev" id="sliderPrev">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+          </button>
+          <button class="slider-nav slider-next" id="sliderNext">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
+          </button>
+          
+          <div class="slider-dots" id="sliderDots">
+            ${artwork.images.map((_, index) => `
+              <span class="dot ${index === 0 ? 'active' : ''}" data-index="${index}"></span>
+            `).join('')}
+          </div>
+        ` : ''}
       </div>
-    ` : ''}
-  </div>
-  <div class="modal-info">
-    <h3 class="modal-title">${artwork.title}</h3>
-    <p class="modal-description" id="modalDescription">${artwork.description}</p>
-    <div class="modal-meta">
-      <span class="modal-genre" id="modalGenre">${getGenreDisplayName(artwork.genre)}</span>
-      <span class="modal-size" id="modalSize">${artwork.size}</span>
-      ${artwork.images.length > 1 ? `<span class="image-counter">1 / ${artwork.images.length}</span>` : ''}
-    </div>
-  </div>
-`;modalContent.innerHTML = `
-<span class="modal-close" id="modalClose">&times;</span>
-<div class="slider-container">
-  <div class="slider-track" id="sliderTrack">
-    ${artwork.images
-      .map(
-        (image, index) => `
-      <div class="slide ${index === 0 ? "active" : ""}">
-        <img src="${image}" alt="${artwork.description} - Image ${
-          index + 1
-        }" class="modal-image">
+      <div class="modal-info">
+        <h3 class="modal-title">${artwork.title}</h3>
+        <p class="modal-description" id="modalDescription">${artwork.description}</p>
+        <div class="modal-meta">
+          <span class="modal-genre" id="modalGenre">${getGenreDisplayName(artwork.genre)}</span>
+          <span class="modal-size" id="modalSize">${artwork.size}</span>
+          ${artwork.images.length > 1 ? `<span class="image-counter">1 / ${artwork.images.length}</span>` : ''}
+        </div>
       </div>
-    `
-      )
-      .join("")}
-  </div>
-  
-  ${
-    artwork.images.length > 1
-      ? `
-    <button class="slider-nav slider-prev" id="sliderPrev">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-      </svg>
-    </button>
-    <button class="slider-nav slider-next" id="sliderNext">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-      </svg>
-    </button>
-    
-    <div class="slider-dots" id="sliderDots">
-      ${artwork.images
-        .map(
-          (_, index) => `
-        <span class="dot ${
-          index === 0 ? "active" : ""
-        }" data-index="${index}"></span>
-      `
-        )
-        .join("")}
-    </div>
-  `
-      : ""
-  }
-</div>
-<div class="modal-info">
-  <p class="modal-description" id="modalDescription">${artwork.description}</p>
-  <div class="modal-meta">
-    <span class="modal-genre" id="modalGenre">${getGenreDisplayName(
-      artwork.genre
-    )}</span>
-    <span class="modal-size" id="modalSize">${artwork.size}</span>
-    ${
-      artwork.images.length > 1
-        ? `<span class="image-counter">1 / ${artwork.images.length}</span>`
-        : ""
-    }
-  </div>
-</div>
-`;
+    `;
+
     // Show modal
     modal.style.display = "flex";
     document.body.style.overflow = "hidden";
@@ -588,4 +513,4 @@ function initGallery() {
     modal.style.display = "none";
     document.body.style.overflow = "";
   }
-
+}

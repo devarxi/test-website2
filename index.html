@@ -33,35 +33,43 @@
         </div>
     </header>
 
-<!-- Replace the entire hero section in index.html with this code -->
-<section class="featured-slideshow">
-    <div class="slideshow-container">
-        <div class="slideshow-track" id="slideshowTrack">
-            <!-- Slides will be dynamically inserted here -->
+<!-- Replace the featured-slideshow section in index.html with this code -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Handcrafted Treasures for Modern Living</h1>
+            <p class="hero-subtitle">Discover unique artisan crafts that bring beauty and authenticity to your everyday life</p>
+            <a href="our_gallery.html" class="btn">Our Gallery</a>
         </div>
+    </div>
+</section>
+
+<!-- New Featured Artworks Slideshow Section -->
+<section class="featured-slideshow-section">
+    <div class="container">
+        <h2 class="section-title">Featured Artworks</h2>
+        <p class="section-subtitle">Explore our carefully curated collection of featured pieces</p>
         
-        <div class="slideshow-controls">
-            <button class="slideshow-nav slideshow-prev" id="slideshowPrev">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                </svg>
-            </button>
-            <button class="slideshow-nav slideshow-next" id="slideshowNext">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                </svg>
-            </button>
-        </div>
-        
-        <div class="slideshow-dots" id="slideshowDots">
-            <!-- Dots will be dynamically inserted here -->
-        </div>
-        
-        <div class="slideshow-overlay">
-            <div class="slideshow-content">
-                <h1 class="hero-title">Handcrafted Treasures for Modern Living</h1>
-                <p class="hero-subtitle">Discover unique artisan crafts that bring beauty and authenticity to your everyday life</p>
-                <a href="our_gallery.html" class="btn">Our Gallery</a>
+        <div class="slideshow-container">
+            <div class="slideshow-track" id="slideshowTrack">
+                <!-- Slides will be dynamically inserted here -->
+            </div>
+            
+            <div class="slideshow-controls">
+                <button class="slideshow-nav slideshow-prev" id="slideshowPrev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
+                <button class="slideshow-nav slideshow-next" id="slideshowNext">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="slideshow-dots" id="slideshowDots">
+                <!-- Dots will be dynamically inserted here -->
             </div>
         </div>
     </div>
@@ -147,15 +155,6 @@
         // Featured artworks data (extracted from gallery.js)
         const featuredArtworks = [
             {
-                id: 4,
-                title: "",
-                description: "",
-                genre: "sketches",
-                images: ["images/art/sketch4.jpg"],
-                size: "14x20 inches",
-                featured: true,
-            },
-            {
                 id: 16,
                 title: "Haryali Trio",
                 description: "",
@@ -189,6 +188,15 @@
                 genre: "other",
                 images: ["images/art/conc_int2.jpg", "images/art/conc_int2_2.jpg"],
                 size: "Variable dimensions",
+                featured: true,
+            },
+            {
+                id: 4,
+                title: "",
+                description: "",
+                genre: "sketches",
+                images: ["images/art/sketch4.jpg"],
+                size: "14x20 inches",
                 featured: true,
             }
         ];
@@ -300,14 +308,15 @@
             startInterval();
             
             // Pause on hover
-            slideshowTrack.addEventListener('mouseenter', function() {
+            const slideshowContainer = document.querySelector('.slideshow-container');
+            slideshowContainer.addEventListener('mouseenter', function() {
                 clearInterval(slideInterval);
             });
             
-            slideshowTrack.addEventListener('mouseleave', function() {
+            slideshowContainer.addEventListener('mouseleave', function() {
                 startInterval();
             });
         }
-        </script>
+    </script>
 </body>
 </html>
