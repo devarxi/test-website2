@@ -3004,3 +3004,160 @@ header {
       bottom: -1rem;
   }
 }
+
+/* ===== NEWS TICKER STYLES ===== */
+.news-ticker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary) 0%, #9c5d27 100%);
+  color: var(--white);
+  padding: 0.5rem 0;
+  z-index: 1002;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(139, 69, 19, 0.3);
+}
+
+.ticker-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  animation: tickerScroll 20s linear infinite;
+  white-space: nowrap;
+}
+
+.ticker-content::before {
+  content: "📢";
+  margin-right: 0.8rem;
+  font-size: 1rem;
+}
+
+@keyframes tickerScroll {
+  0% {
+      transform: translateX(100%);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
+/* Adjust header position for ticker */
+header {
+  top: 40px; /* Height of the ticker */
+}
+
+/* Adjust hero margins for ticker */
+.hero, .products-hero, .about-hero, .contact-hero {
+  margin-top: 140px !important; /* Increased to account for ticker + header */
+}
+
+.featured-slideshow {
+  margin-top: 140px !important;
+}
+
+/* ===== ENHANCED SLIDESHOW CAPTION STYLES ===== */
+.slide-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: var(--white);
+  padding: 2rem 1.5rem 1.5rem;
+  text-align: center;
+  z-index: 3;
+}
+
+.slide-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.slide-description {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* ===== SLIDESHOW GALLERY PROMPT ===== */
+.slideshow-gallery-prompt {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--secondary);
+  border-radius: 8px;
+  border-left: 4px solid var(--accent);
+}
+
+.slideshow-gallery-prompt p {
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.slideshow-gallery-prompt .btn {
+  margin-top: 0.5rem;
+}
+
+/* Responsive adjustments for ticker */
+@media (max-width: 768px) {
+  .ticker-content {
+      font-size: 0.8rem;
+      animation: tickerScroll 15s linear infinite;
+  }
+  
+  header {
+      top: 35px;
+  }
+  
+  .hero, .products-hero, .about-hero, .contact-hero {
+      margin-top: 135px !important;
+  }
+  
+  .featured-slideshow {
+      margin-top: 135px !important;
+  }
+  
+  .slide-caption {
+      padding: 1.5rem 1rem 1rem;
+  }
+  
+  .slide-title {
+      font-size: 1.3rem;
+  }
+  
+  .slide-description {
+      font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-ticker {
+      padding: 0.4rem 0;
+  }
+  
+  .ticker-content {
+      font-size: 0.75rem;
+      animation: tickerScroll 12s linear infinite;
+  }
+  
+  header {
+      top: 32px;
+  }
+  
+  .hero, .products-hero, .about-hero, .contact-hero {
+      margin-top: 132px !important;
+  }
+  
+  .featured-slideshow {
+      margin-top: 132px !important;
+  }
+}

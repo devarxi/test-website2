@@ -9,6 +9,13 @@
     <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- News Ticker -->
+    <div class="news-ticker">
+        <div class="ticker-content">
+            Customized & Repeat Orders Available Exclusively via WhatsApp - Let's Create Something Beautiful Together!
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container header-container">
@@ -33,50 +40,53 @@
         </div>
     </header>
 
-<!-- Replace the featured-slideshow section in index.html with this code -->
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1 class="hero-title">Handcrafted Treasures for Modern Living</h1>
-            <p class="hero-subtitle">Discover unique artisan crafts that bring beauty and authenticity to your everyday life</p>
-            <a href="our_gallery.html" class="btn">Our Gallery</a>
-        </div>
-    </div>
-</section>
-
-<!-- New Featured Artworks Slideshow Section -->
-<section class="featured-slideshow-section">
-    <div class="container">
-        <h2 class="section-title">Featured Artworks</h2>
-        <p class="section-subtitle">Explore our carefully curated collection of featured pieces</p>
-        
-        <div class="slideshow-container">
-            <div class="slideshow-track" id="slideshowTrack">
-                <!-- Slides will be dynamically inserted here -->
-            </div>
-            
-            <div class="slideshow-controls">
-                <button class="slideshow-nav slideshow-prev" id="slideshowPrev">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                    </svg>
-                </button>
-                <button class="slideshow-nav slideshow-next" id="slideshowNext">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                    </svg>
-                </button>
-            </div>
-            
-            <div class="slideshow-dots" id="slideshowDots">
-                <!-- Dots will be dynamically inserted here -->
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Handcrafted Treasures for Modern Living</h1>
+                <p class="hero-subtitle">Discover unique artisan crafts that bring beauty and authenticity to your everyday life</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <!-- Featured Artworks Slideshow Section -->
+    <section class="featured-slideshow-section">
+        <div class="container">
+            <h2 class="section-title">Featured Artworks</h2>
+            <p class="section-subtitle">Explore our carefully curated collection of featured pieces</p>
+            
+            <div class="slideshow-container">
+                <div class="slideshow-track" id="slideshowTrack">
+                    <!-- Slides will be dynamically inserted here -->
+                </div>
+                
+                <div class="slideshow-controls">
+                    <button class="slideshow-nav slideshow-prev" id="slideshowPrev">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
+                    </button>
+                    <button class="slideshow-nav slideshow-next" id="slideshowNext">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="slideshow-dots" id="slideshowDots">
+                    <!-- Dots will be dynamically inserted here -->
+                </div>
+            </div>
 
-   
+            <!-- Gallery Prompt -->
+            <div class="slideshow-gallery-prompt">
+                <p>For more details regarding the art pieces, please visit our gallery</p>
+                <a href="our_gallery.html" class="btn btn-outline">Explore Full Gallery</a>
+            </div>
+        </div>
+    </section>
+
     <!-- About Preview -->
     <section class="about-preview">
         <div class="container">
@@ -95,8 +105,6 @@
         </div>
     </section>
 
-    
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -106,13 +114,9 @@
                     <p>Bringing handcrafted beauty to everyday life through artisan-made products.</p>
                     <div class="social-links">
                         <a href="#" class="social-link">ƒ</a>
-                        <a href="#" class="social-link">t</a>
                         <a href="https://www.instagram.com/nakkashi.co/" target="_blank" class="social-link">i</a>
-                        <a href="#" class="social-link">p</a>
                     </div>
                 </div>
-                
-                
                 
                 <div class="footer-column">
                     <h3>Information</h3>
@@ -139,7 +143,6 @@
         </div>
     </footer>
 
-    
     <script>
       // Parse the document body and replace all emojis with Twitter's emojis
       document.addEventListener('DOMContentLoaded', function() {
@@ -157,46 +160,46 @@
             {
                 id: 16,
                 title: "Haryali Trio",
-                description: "",
+                description: "A beautiful set of three green-themed wall pieces",
                 genre: "wallpieces",
                 images: ["images/art/wallpiece4.jpg"],
-                size: "20x20 inches",
+                size: "Customized by style and size | Handcrafted",
                 featured: true,
             },
             {
                 id: 19,
                 title: "Midas Touch",
-                description: "",
+                description: "Elegant golden accents on traditional artwork",
                 genre: "wallpieces",
                 images: ["images/art/wallpiece7.jpg", "images/art/wallpiece7_2.jpg"],
-                size: "20x20 inches",
+                size: "Customized by style and size | Handcrafted",
                 featured: true,
             },
             {
                 id: 23,
                 title: "Play Palette",
-                description: "",
+                description: "Colorful conceptual interior piece",
                 genre: "other",
                 images: ["images/art/conc_int1.jpg", "images/art/conc_int1_2.jpg"],
-                size: "Variable dimensions",
+                size: "Customized by style and size | Handcrafted",
                 featured: true,
             },
             {
                 id: 24,
                 title: "Crescent Dreams",
-                description: "",
+                description: "Dreamy moon-inspired artwork",
                 genre: "other",
                 images: ["images/art/conc_int2.jpg", "images/art/conc_int2_2.jpg"],
-                size: "Variable dimensions",
+                size: "Customized by style and size | Handcrafted",
                 featured: true,
             },
             {
                 id: 4,
-                title: "",
-                description: "",
+                title: "Portrait Sketch",
+                description: "Detailed character portrait sketch",
                 genre: "sketches",
                 images: ["images/art/sketch4.jpg"],
-                size: "14x20 inches",
+                size: "Customized by style and size",
                 featured: true,
             }
         ];
@@ -227,6 +230,11 @@
                 slide.innerHTML = `
                     <div class="slideshow-image-container">
                         <img src="${imageUrl}" alt="${artwork.title || 'Featured Artwork'}" class="slideshow-image">
+                        <div class="slide-caption">
+                            <h3 class="slide-title">${artwork.title}</h3>
+                            ${artwork.description ? `<p class="slide-description">${artwork.description}</p>` : ''}
+                            <p class="slide-size">${artwork.size}</p>
+                        </div>
                     </div>
                 `;
                 
