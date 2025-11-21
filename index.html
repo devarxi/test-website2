@@ -1,330 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nakkashi - Handcrafted Treasures</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <!-- News Ticker -->
     <div class="news-ticker">
-        <div class="ticker-content">
-            Customized & Repeat Orders Available Exclusively via WhatsApp - Let's Create Something Beautiful Together!
-        </div>
+      <div class="ticker-content">
+        Customized & Repeat Orders Available Exclusively via WhatsApp - Let's
+        Create Something Beautiful Together!
+      </div>
     </div>
 
     <!-- Header -->
     <header>
-        <div class="container header-container">
-            <a href="index.html" class="logo">
-                <img src="images/logo.png" alt="Nakkashi" class="logo-image">
-            </a>
-            
-            <div class="nav-icons">
-                <div class="mobile-menu-btn">☰</div>
-            </div>
+      <div class="container header-container">
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" alt="Nakkashi" class="logo-image" />
+        </a>
 
-            <!-- Mobile Navigation Menu -->
-            <div class="mobile-nav-menu">
-                <div class="mobile-nav-close">✕</div>
-                <ul class="mobile-nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="our_gallery.html">Our Gallery</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+        <div class="nav-icons">
+          <div class="mobile-menu-btn">☰</div>
         </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-nav-menu">
+          <div class="mobile-nav-close">✕</div>
+          <ul class="mobile-nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="our_gallery.html">Our Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Handcrafted Treasures for Modern Living</h1>
-                <p class="hero-subtitle">Discover unique artisan crafts that bring beauty and authenticity to your everyday life</p>
-            </div>
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Handcrafted Treasures for Modern Living</h1>
+          <p class="hero-subtitle">
+            Discover unique artisan crafts that bring beauty and authenticity to
+            your everyday life
+          </p>
         </div>
+      </div>
     </section>
 
     <!-- Featured Artworks Slideshow Section -->
     <section class="featured-slideshow-section">
-        <div class="container">
-            <h2 class="section-title">Featured Artworks</h2>
-            <p class="section-subtitle">Explore our carefully curated collection of featured pieces</p>
-            
-            <div class="slideshow-container">
-                <div class="slideshow-track" id="slideshowTrack">
-                    <!-- Slides will be dynamically inserted here -->
-                </div>
-                
-                <div class="slideshow-controls">
-                    <button class="slideshow-nav slideshow-prev" id="slideshowPrev">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                        </svg>
-                    </button>
-                    <button class="slideshow-nav slideshow-next" id="slideshowNext">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="slideshow-dots" id="slideshowDots">
-                    <!-- Dots will be dynamically inserted here -->
-                </div>
-            </div>
+      <div class="container">
+        <h2 class="section-title">Featured Artworks</h2>
+        <p class="section-subtitle">
+          Explore our carefully curated collection of featured pieces
+        </p>
 
-            <!-- Gallery Prompt -->
-            <div class="slideshow-gallery-prompt">
-                <p>For more details regarding the art pieces, please visit our gallery</p>
-                <a href="our_gallery.html" class="btn btn-outline">Explore Full Gallery</a>
-            </div>
+        <div class="slideshow-container">
+          <div class="slideshow-track" id="slideshowTrack">
+            <!-- Slides will be dynamically inserted here -->
+          </div>
+
+          <div class="slideshow-controls">
+            <button class="slideshow-nav slideshow-prev" id="slideshowPrev">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+              </svg>
+            </button>
+            <button class="slideshow-nav slideshow-next" id="slideshowNext">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="slideshow-dots" id="slideshowDots">
+            <!-- Dots will be dynamically inserted here -->
+          </div>
         </div>
+
+        <!-- Gallery Prompt -->
+        <div class="slideshow-gallery-prompt">
+          <p>
+            For more details regarding the art pieces, please visit our gallery
+          </p>
+          <a href="our_gallery.html" class="btn btn-outline"
+            >Explore Full Gallery</a
+          >
+        </div>
+      </div>
     </section>
 
     <!-- About Preview -->
     <section class="about-preview">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image-container">
-                    <img src="images/jay_index.jpg" alt="Artisan at work" class="about-image">
-                </div>
-                
-                <div class="about-text">
-                    <h2>Our Craftsmanship</h2>
-                    <p>At Nakkashi, we believe in the beauty of handmade products. Each piece is carefully crafted by skilled artisans who pour their passion and expertise into every detail.</p>
-                    <p>Our mission is to preserve traditional crafting techniques while creating products that fit seamlessly into modern lifestyles.</p>
-                    <a href="about.html" class="btn btn-outline">Learn More</a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="about-content">
+          <div class="about-image-container">
+            <img
+              src="images/jay_index.jpg"
+              alt="Artisan at work"
+              class="about-image"
+            />
+          </div>
+
+          <div class="about-text">
+            <h2>Our Craftsmanship</h2>
+            <p>
+              At Nakkashi, we believe in the beauty of handmade products. Each
+              piece is carefully crafted by skilled artisans who pour their
+              passion and expertise into every detail.
+            </p>
+            <p>
+              Our mission is to preserve traditional crafting techniques while
+              creating products that fit seamlessly into modern lifestyles.
+            </p>
+            <a href="about.html" class="btn btn-outline">Learn More</a>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Nakkashi</h3>
-                    <p>Bringing handcrafted beauty to everyday life through artisan-made products.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">ƒ</a>
-                        <a href="https://www.instagram.com/nakkashi.co/" target="_blank" class="social-link">i</a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Information</h3>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <ul class="footer-links">
-                        <a href="tel:+917623861655">+91 76238 61655</a>
-                        <a href="mailto:nakkashi1239@gmail.com">nakkashi1239@gmail.com</a>
-                        <li>Vadodara, India</li>
-                    </ul>
-                </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>Nakkashi</h3>
+            <p>
+              Bringing handcrafted beauty to everyday life through artisan-made
+              products.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link">ƒ</a>
+              <a
+                href="https://www.instagram.com/nakkashi.co/"
+                target="_blank"
+                class="social-link"
+                >i</a
+              >
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 Nakkashi. All rights reserved.</p>
-            </div>
+          </div>
+
+          <div class="footer-column">
+            <h3>Information</h3>
+            <ul class="footer-links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Contact</h3>
+            <ul class="footer-links">
+              <a href="tel:+917623861655">+91 76238 61655</a>
+              <a href="mailto:nakkashi1239@gmail.com">nakkashi1239@gmail.com</a>
+              <li>Vadodara, India</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="copyright">
+          <p>&copy; 2025 Nakkashi. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <script>
       // Parse the document body and replace all emojis with Twitter's emojis
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         twemoji.parse(document.body, {
-          folder: 'svg',
-          ext: '.svg'
+          folder: "svg",
+          ext: ".svg",
         });
       });
     </script>
     <script src="script.js"></script>
-    
+
     <script>
-        // Featured artworks data (extracted from gallery.js)
-        const featuredArtworks = [
-            {
-                id: 16,
-                title: "Haryali Trio",
-                description: "A beautiful set of three green-themed wall pieces",
-                genre: "wallpieces",
-                images: ["images/art/wallpiece4.jpg"],
-                size: "Customized by style and size | Handcrafted",
-                featured: true,
-            },
-            {
-                id: 19,
-                title: "Midas Touch",
-                description: "Elegant golden accents on traditional artwork",
-                genre: "wallpieces",
-                images: ["images/art/wallpiece7.jpg", "images/art/wallpiece7_2.jpg"],
-                size: "Customized by style and size | Handcrafted",
-                featured: true,
-            },
-            {
-                id: 23,
-                title: "Play Palette",
-                description: "Colorful conceptual interior piece",
-                genre: "other",
-                images: ["images/art/conc_int1.jpg", "images/art/conc_int1_2.jpg"],
-                size: "Customized by style and size | Handcrafted",
-                featured: true,
-            },
-            {
-                id: 24,
-                title: "Crescent Dreams",
-                description: "Dreamy moon-inspired artwork",
-                genre: "other",
-                images: ["images/art/conc_int2.jpg", "images/art/conc_int2_2.jpg"],
-                size: "Customized by style and size | Handcrafted",
-                featured: true,
-            },
-            {
-                id: 4,
-                title: "Portrait Sketch",
-                description: "Detailed character portrait sketch",
-                genre: "sketches",
-                images: ["images/art/sketch4.jpg"],
-                size: "Customized by style and size",
-                featured: true,
-            }
-        ];
-        
-        // Initialize slideshow when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            initFeaturedSlideshow();
+      // Featured artworks data (extracted from gallery.js)
+      const featuredArtworks = [
+        {
+          id: 16,
+          title: "Haryali Trio",
+          description: "A beautiful set of three green-themed wall pieces",
+          genre: "wallpieces",
+          images: ["images/art/wallpiece4.jpg"],
+          size: "Customized by style and size | Handcrafted",
+          featured: true,
+        },
+        {
+          id: 19,
+          title: "Midas Touch",
+          description: "Elegant golden accents on traditional artwork",
+          genre: "wallpieces",
+          images: ["images/art/wallpiece7.jpg", "images/art/wallpiece7_2.jpg"],
+          size: "Customized by style and size | Handcrafted",
+          featured: true,
+        },
+        {
+          id: 25,
+          title: "Intertwined Devotion",
+          description: "",
+          genre: "other",
+          images: ["images/art/conc_int3.jpg", "images/art/conc_int3_2.jpg"],
+          size: "Customized by style and size | Handcrafted",
+          featured: true,
+        },
+        {
+          id: 23,
+          title: "Play Palette",
+          description: "Colorful conceptual interior piece",
+          genre: "other",
+          images: ["images/art/conc_int1.jpg", "images/art/conc_int1_2.jpg"],
+          size: "Customized by style and size | Handcrafted",
+          featured: true,
+        },
+        {
+          id: 24,
+          title: "Crescent Dreams",
+          description: "Dreamy moon-inspired artwork",
+          genre: "other",
+          images: ["images/art/conc_int2.jpg", "images/art/conc_int2_2.jpg"],
+          size: "Customized by style and size | Handcrafted",
+          featured: true,
+        },
+        {
+          id: 4,
+          title: "Portrait Sketch",
+          description: "Detailed character portrait sketch",
+          genre: "sketches",
+          images: ["images/art/sketch4.jpg"],
+          size: "Customized by style and size",
+          featured: true,
+        },
+      ];
+
+      // Initialize slideshow when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        initFeaturedSlideshow();
+      });
+
+      function initFeaturedSlideshow() {
+        const slideshowTrack = document.getElementById("slideshowTrack");
+        const slideshowDots = document.getElementById("slideshowDots");
+        const prevBtn = document.getElementById("slideshowPrev");
+        const nextBtn = document.getElementById("slideshowNext");
+
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Create slides and dots
+        featuredArtworks.forEach((artwork, index) => {
+          // Create slide
+          const slide = document.createElement("div");
+          slide.className = `slideshow-slide ${index === 0 ? "active" : ""}`;
+
+          // Use first image for slideshow
+          const imageUrl = artwork.images[0];
+
+          slide.innerHTML = `
+                      <div class="slideshow-image-container">
+                          <img src="${imageUrl}" alt="${
+            artwork.title || "Featured Artwork"
+          }" class="slideshow-image">
+                          <div class="slide-caption">
+                              <h3 class="slide-title">${artwork.title}</h3>
+                              ${
+                                artwork.description
+                                  ? `<p class="slide-description">${artwork.description}</p>`
+                                  : ""
+                              }
+                              <p class="slide-size">${artwork.size}</p>
+                          </div>
+                      </div>
+                  `;
+
+          slideshowTrack.appendChild(slide);
+
+          // Create dot
+          const dot = document.createElement("span");
+          dot.className = `slideshow-dot ${index === 0 ? "active" : ""}`;
+          dot.setAttribute("data-index", index);
+          slideshowDots.appendChild(dot);
         });
-        
-        function initFeaturedSlideshow() {
-            const slideshowTrack = document.getElementById('slideshowTrack');
-            const slideshowDots = document.getElementById('slideshowDots');
-            const prevBtn = document.getElementById('slideshowPrev');
-            const nextBtn = document.getElementById('slideshowNext');
-            
-            let currentSlide = 0;
-            let slideInterval;
-            
-            // Create slides and dots
-            featuredArtworks.forEach((artwork, index) => {
-                // Create slide
-                const slide = document.createElement('div');
-                slide.className = `slideshow-slide ${index === 0 ? 'active' : ''}`;
-                
-                // Use first image for slideshow
-                const imageUrl = artwork.images[0];
-                
-                slide.innerHTML = `
-                    <div class="slideshow-image-container">
-                        <img src="${imageUrl}" alt="${artwork.title || 'Featured Artwork'}" class="slideshow-image">
-                        <div class="slide-caption">
-                            <h3 class="slide-title">${artwork.title}</h3>
-                            ${artwork.description ? `<p class="slide-description">${artwork.description}</p>` : ''}
-                            <p class="slide-size">${artwork.size}</p>
-                        </div>
-                    </div>
-                `;
-                
-                slideshowTrack.appendChild(slide);
-                
-                // Create dot
-                const dot = document.createElement('span');
-                dot.className = `slideshow-dot ${index === 0 ? 'active' : ''}`;
-                dot.setAttribute('data-index', index);
-                slideshowDots.appendChild(dot);
-            });
-            
-            const slides = document.querySelectorAll('.slideshow-slide');
-            const dots = document.querySelectorAll('.slideshow-dot');
-            
-            // Function to show specific slide
-            function showSlide(index) {
-                // Remove active class from all slides and dots
-                slides.forEach(slide => slide.classList.remove('active'));
-                dots.forEach(dot => dot.classList.remove('active'));
-                
-                // Add active class to current slide and dot
-                slides[index].classList.add('active');
-                dots[index].classList.add('active');
-                
-                // Update track position
-                slideshowTrack.style.transform = `translateX(-${index * 100}%)`;
-                
-                currentSlide = index;
-            }
-            
-            // Next slide function
-            function nextSlide() {
-                const nextIndex = (currentSlide + 1) % featuredArtworks.length;
-                showSlide(nextIndex);
-            }
-            
-            // Previous slide function
-            function prevSlide() {
-                const prevIndex = (currentSlide - 1 + featuredArtworks.length) % featuredArtworks.length;
-                showSlide(prevIndex);
-            }
-            
-            // Event listeners for navigation
-            nextBtn.addEventListener('click', nextSlide);
-            prevBtn.addEventListener('click', prevSlide);
-            
-            // Dot navigation
-            dots.forEach(dot => {
-                dot.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    showSlide(index);
-                    resetInterval();
-                });
-            });
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft') {
-                    prevSlide();
-                    resetInterval();
-                } else if (e.key === 'ArrowRight') {
-                    nextSlide();
-                    resetInterval();
-                }
-            });
-            
-            // Auto-advance slides
-            function startInterval() {
-                slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-            }
-            
-            function resetInterval() {
-                clearInterval(slideInterval);
-                startInterval();
-            }
-            
-            // Start auto-advance
-            startInterval();
-            
-            // Pause on hover
-            const slideshowContainer = document.querySelector('.slideshow-container');
-            slideshowContainer.addEventListener('mouseenter', function() {
-                clearInterval(slideInterval);
-            });
-            
-            slideshowContainer.addEventListener('mouseleave', function() {
-                startInterval();
-            });
+
+        const slides = document.querySelectorAll(".slideshow-slide");
+        const dots = document.querySelectorAll(".slideshow-dot");
+
+        // Function to show specific slide
+        function showSlide(index) {
+          // Remove active class from all slides and dots
+          slides.forEach((slide) => slide.classList.remove("active"));
+          dots.forEach((dot) => dot.classList.remove("active"));
+
+          // Add active class to current slide and dot
+          slides[index].classList.add("active");
+          dots[index].classList.add("active");
+
+          // Update track position
+          slideshowTrack.style.transform = `translateX(-${index * 100}%)`;
+
+          currentSlide = index;
         }
+
+        // Next slide function
+        function nextSlide() {
+          const nextIndex = (currentSlide + 1) % featuredArtworks.length;
+          showSlide(nextIndex);
+        }
+
+        // Previous slide function
+        function prevSlide() {
+          const prevIndex =
+            (currentSlide - 1 + featuredArtworks.length) %
+            featuredArtworks.length;
+          showSlide(prevIndex);
+        }
+
+        // Event listeners for navigation
+        nextBtn.addEventListener("click", nextSlide);
+        prevBtn.addEventListener("click", prevSlide);
+
+        // Dot navigation
+        dots.forEach((dot) => {
+          dot.addEventListener("click", function () {
+            const index = parseInt(this.getAttribute("data-index"));
+            showSlide(index);
+            resetInterval();
+          });
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowLeft") {
+            prevSlide();
+            resetInterval();
+          } else if (e.key === "ArrowRight") {
+            nextSlide();
+            resetInterval();
+          }
+        });
+
+        // Auto-advance slides
+        function startInterval() {
+          slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+        function resetInterval() {
+          clearInterval(slideInterval);
+          startInterval();
+        }
+
+        // Start auto-advance
+        startInterval();
+
+        // Pause on hover
+        const slideshowContainer = document.querySelector(
+          ".slideshow-container"
+        );
+        slideshowContainer.addEventListener("mouseenter", function () {
+          clearInterval(slideInterval);
+        });
+
+        slideshowContainer.addEventListener("mouseleave", function () {
+          startInterval();
+        });
+      }
     </script>
-</body>
+  </body>
 </html>
