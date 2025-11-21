@@ -235,6 +235,15 @@ function initGallery() {
       size: "Customized by style and size | Handcrafted",
       featured: true,
     },
+    {
+      id: 25,
+      title: "Intertwined Devotion",
+      description: "",
+      genre: "other",
+      images: ["images/art/conc_int3.jpg", "images/art/conc_int3_2.jpg"],
+      size: "Customized by style and size | Handcrafted",
+      featured: true,
+    }
   ];
 
   let currentGenre = null;
