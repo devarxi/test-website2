@@ -238,7 +238,7 @@ function initGallery() {
     {
       id: 25,
       title: "Intertwined Devotion",
-      description: "Divine love captured in vibrant colors and nature.",
+      description: "",
       genre: "other",
       images: ["images/art/conc_int3.jpg", "images/art/conc_int3_2.jpg"],
       size: "Customized by style and size | Handcrafted",
@@ -262,22 +262,80 @@ function initGallery() {
     });
   });
 
-  function filterArtworks(genre) {
-    initialState.style.display = "none";
-    galleryContent.style.display = "block";
-    emptyState.style.display = "none";
-    artGrid.style.display = "grid";
+  // Replace the filterArtworks function with this enhanced version
+function filterArtworks(genre) {
+  // Hide all sections initially
+  initialState.style.display = "none";
+  galleryContent.style.display = "none";
+  emptyState.style.display = "none";
+  
+  let filteredArtworks = artworks.filter((art) => art.genre === genre);
 
-    let filteredArtworks = artworks.filter((art) => art.genre === genre);
+  if (filteredArtworks.length > 0) {
+    // Create and show genre modal/popup
+    createGenreModal(genre, filteredArtworks);
+  } else {
+    emptyState.style.display = "block";
+  }
+}
 
-    const genreTitles = {
-      sketches: "Make to Orders Sketches",
-      wallpieces: "Customized Wallpieces",
-      other: "Conceptual Interior",
-    };
-    galleryTitle.textContent = genreTitles[genre];
-
-    artworkCount.textContent = filteredArtworks.length;
+function createGenreModal(genre, artworks) {
+  // Remove existing modal if any
+  const existingModal = document.getElementById('genreModal');
+  if (existingModal) {
+    existingModal.remove();
+  }
+  
+  const genreTitles = {
+    sketches: "Make to Orders Sketches",
+    wallpieces: "Customized Wallpieces",
+    other: "Conceptual Interior",
+  };
+  
+  const modal = document.createElement('div');
+  modal.id = 'genreModal';
+  modal.className = 'genre-modal';
+  
+  modal.innerHTML = `
+    <div class="genre-modal-content">
+      <div class="genre-modal-header">
+        <h3>${genreTitles[genre]} (${artworks.length} artworks)</h3>
+        <button class="genre-modal-close">✕</button>
+      </div>
+      <div class="genre-modal-grid" id="genreModalGrid">
+        <!-- Artworks will be loaded here -->
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  // Display artworks in modal
+  const modalGrid = document.getElementById('genreModalGrid');
+  artworks.forEach(artwork => {
+    const artCard = createArtCard(artwork);
+    modalGrid.appendChild(artCard);
+  });
+  
+  // Close modal events
+  const closeBtn = modal.querySelector('.genre-modal-close');
+  closeBtn.addEventListener('click', () => {
+    modal.remove();
+    // Show initial state again
+    initialState.style.display = "block";
+  });
+  
+  // Close when clicking outside
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.remove();
+      initialState.style.display = "block";
+    }
+  });
+  
+  // Prevent body scrolling when modal is open
+  document.body.style.overflow = "hidden";
+}
     displayArtworks(filteredArtworks);
 
     if (filteredArtworks.length === 0) {
@@ -522,4 +580,3 @@ function initGallery() {
     modal.style.display = "none";
     document.body.style.overflow = "";
   }
-}
