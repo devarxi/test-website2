@@ -1,4 +1,4 @@
-// gallery.js - Updated with custom dimension text
+// gallery.js - Updated with modal fixes and slideshow linking
 document.addEventListener("DOMContentLoaded", function () {
   initGallery();
 });
@@ -11,6 +11,14 @@ function initGallery() {
   const initialState = document.getElementById("initialState");
   const galleryContent = document.getElementById("galleryContent");
   const emptyState = document.getElementById("emptyState");
+
+  // Check for stored genre and artwork from slideshow
+  const storedGenre = sessionStorage.getItem('selectedGenre');
+  const storedArtwork = sessionStorage.getItem('selectedArtwork');
+  
+  // Clear storage after reading
+  if (storedGenre) sessionStorage.removeItem('selectedGenre');
+  if (storedArtwork) sessionStorage.removeItem('selectedArtwork');
 
   // Updated artwork data with custom dimension text
   const artworks = [
@@ -247,6 +255,43 @@ function initGallery() {
   ];
 
   let currentGenre = null;
+  let currentGenreModal = null;
+
+  // Check if we have stored genre from slideshow and auto-select it
+  if (storedGenre) {
+    const targetBtn = Array.from(genreButtons).find(btn => 
+      btn.getAttribute('data-genre') === storedGenre
+    );
+    
+    if (targetBtn) {
+      // Update active button
+      genreButtons.forEach((btn) => btn.classList.remove("active"));
+      targetBtn.classList.add("active");
+      
+      // Open the genre modal immediately
+      setTimeout(() => {
+        filterArtworks(storedGenre);
+        
+        // If artwork ID is provided, open that specific artwork after a delay
+        if (storedArtwork) {
+          const targetArtwork = artworks.find(art => art.id.toString() === storedArtwork);
+          if (targetArtwork) {
+            setTimeout(() => {
+              // Close the genre modal first
+              if (currentGenreModal) {
+                currentGenreModal.remove();
+                currentGenreModal = null;
+                document.body.style.overflow = "";
+              }
+              
+              // Then open the artwork modal
+              openArtworkModal(targetArtwork);
+            }, 800);
+          }
+        }
+      }, 100);
+    }
+  }
 
   // Genre filter functionality
   genreButtons.forEach((button) => {
@@ -262,97 +307,169 @@ function initGallery() {
     });
   });
 
-  // Replace the filterArtworks function with this enhanced version
-function filterArtworks(genre) {
-  // Hide all sections initially
-  initialState.style.display = "none";
-  galleryContent.style.display = "none";
-  emptyState.style.display = "none";
-  
-  let filteredArtworks = artworks.filter((art) => art.genre === genre);
+  function filterArtworks(genre) {
+    // Hide all sections initially
+    if (initialState) initialState.style.display = "none";
+    if (galleryContent) galleryContent.style.display = "none";
+    if (emptyState) emptyState.style.display = "none";
+    
+    let filteredArtworks = artworks.filter((art) => art.genre === genre);
 
-  if (filteredArtworks.length > 0) {
-    // Create and show genre modal/popup
-    createGenreModal(genre, filteredArtworks);
-  } else {
-    emptyState.style.display = "block";
+    if (filteredArtworks.length > 0) {
+      // Create and show genre modal/popup
+      createGenreModal(genre, filteredArtworks);
+    } else {
+      if (emptyState) emptyState.style.display = "block";
+    }
   }
-}
 
-function createGenreModal(genre, artworks) {
-  // Remove existing modal if any
-  const existingModal = document.getElementById('genreModal');
-  if (existingModal) {
-    existingModal.remove();
+  function createGenreModal(genre, artworks) {
+    // Remove existing modal if any
+    const existingModal = document.getElementById('genreModal');
+    if (existingModal) {
+      existingModal.remove();
+      currentGenreModal = null;
+    }
+    
+    const genreTitles = {
+      sketches: "Make to Orders Sketches",
+      wallpieces: "Customized Wallpieces",
+      other: "Conceptual Interior",
+    };
+    
+    const modal = document.createElement('div');
+    modal.id = 'genreModal';
+    modal.className = 'genre-modal';
+    
+    modal.innerHTML = `
+      <div class="genre-modal-content">
+        <div class="genre-modal-header">
+          <h3>${genreTitles[genre]} (${artworks.length} artworks)</h3>
+          <button class="genre-modal-close">✕</button>
+        </div>
+        <div class="genre-modal-grid" id="genreModalGrid">
+          <!-- Artworks will be loaded here -->
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    currentGenreModal = modal;
+    
+    // Display artworks in modal with proper event binding
+    const modalGrid = document.getElementById('genreModalGrid');
+    artworks.forEach(artwork => {
+      const artCard = createArtCardForModal(artwork);
+      modalGrid.appendChild(artCard);
+    });
+    
+    // Close modal events
+    const closeBtn = modal.querySelector('.genre-modal-close');
+    closeBtn.addEventListener('click', () => {
+      closeGenreModal();
+    });
+    
+    // Close when clicking outside
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeGenreModal();
+      }
+    });
+    
+    // Close with Escape key
+    const escapeHandler = function closeOnEscape(e) {
+      if (e.key === 'Escape' && document.getElementById('genreModal')) {
+        closeGenreModal();
+        document.removeEventListener('keydown', escapeHandler);
+      }
+    };
+    document.addEventListener('keydown', escapeHandler);
+    
+    // Prevent body scrolling when modal is open
+    document.body.style.overflow = "hidden";
   }
-  
-  const genreTitles = {
-    sketches: "Make to Orders Sketches",
-    wallpieces: "Customized Wallpieces",
-    other: "Conceptual Interior",
-  };
-  
-  const modal = document.createElement('div');
-  modal.id = 'genreModal';
-  modal.className = 'genre-modal';
-  
-  modal.innerHTML = `
-    <div class="genre-modal-content">
-      <div class="genre-modal-header">
-        <h3>${genreTitles[genre]} (${artworks.length} artworks)</h3>
-        <button class="genre-modal-close">✕</button>
-      </div>
-      <div class="genre-modal-grid" id="genreModalGrid">
-        <!-- Artworks will be loaded here -->
-      </div>
-    </div>
-  `;
-  
-  document.body.appendChild(modal);
-  
-  // Display artworks in modal
-  const modalGrid = document.getElementById('genreModalGrid');
-  artworks.forEach(artwork => {
-    const artCard = createArtCard(artwork);
-    modalGrid.appendChild(artCard);
-  });
-  
-  // Close modal events
-  const closeBtn = modal.querySelector('.genre-modal-close');
-  closeBtn.addEventListener('click', () => {
-    modal.remove();
-    // Show initial state again
-    initialState.style.display = "block";
-  });
-  
-  // Close when clicking outside
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
+
+  function closeGenreModal() {
+    const modal = document.getElementById('genreModal');
+    if (modal) {
       modal.remove();
+      currentGenreModal = null;
+    }
+    document.body.style.overflow = "";
+    
+    // Show initial state again
+    if (initialState) {
       initialState.style.display = "block";
     }
-  });
-  
-  // Prevent body scrolling when modal is open
-  document.body.style.overflow = "hidden";
-}
-    displayArtworks(filteredArtworks);
-
-    if (filteredArtworks.length === 0) {
-      artGrid.style.display = "none";
-      emptyState.style.display = "block";
-    }
   }
 
-  function displayArtworks(artworksToShow) {
-    artGrid.innerHTML = "";
-
-    artworksToShow.forEach((artwork) => {
-      const artCard = createArtCard(artwork);
-      artGrid.appendChild(artCard);
+  // Create a separate function for modal art cards
+  function createArtCardForModal(artwork) {
+    const artCard = document.createElement("div");
+    artCard.className = `art-card ${artwork.featured ? "featured" : ""}`;
+    artCard.setAttribute("data-genre", artwork.genre);
+    
+    // Use first image as thumbnail
+    const thumbnail = artwork.images[0];
+    
+    artCard.innerHTML = `
+      <div class="art-image-container">
+          <img src="${thumbnail}" alt="${artwork.title}" class="art-image">
+          <div class="art-overlay">
+              <div class="art-actions">
+                  <button class="art-view-btn" data-art-id="${artwork.id}">
+                      👁️ View Details
+                  </button>
+              </div>
+          </div>
+          ${artwork.featured ? '<div class="featured-badge">Featured</div>' : ''}
+          ${artwork.images.length > 1 ? '<div class="multi-image-badge">📷 ' + artwork.images.length + '</div>' : ''}
+      </div>
+      <div class="art-info">
+          <h3 class="art-title">${artwork.title}</h3>
+          <p class="art-description">${artwork.description}</p>
+          <div class="art-meta">
+              <span class="art-genre">${getGenreDisplayName(artwork.genre)}</span>
+              <span class="art-size">${artwork.size}</span>
+          </div>
+      </div>
+    `;
+    
+    // Add click event for the entire card
+    artCard.addEventListener("click", function (e) {
+      // Prevent the click from bubbling up to the modal
+      e.stopPropagation();
+      
+      // Close the genre modal first
+      closeGenreModal();
+      
+      // Then open the artwork modal
+      setTimeout(() => {
+        openArtworkModal(artwork);
+      }, 50);
     });
+    
+    // Add click event for view button
+    const viewBtn = artCard.querySelector(".art-view-btn");
+    if (viewBtn) {
+      viewBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        // Close the genre modal first
+        closeGenreModal();
+        
+        // Then open the artwork modal
+        setTimeout(() => {
+          openArtworkModal(artwork);
+        }, 50);
+      });
+    }
+    
+    return artCard;
   }
 
+  // Original function for main gallery (if needed elsewhere)
   function createArtCard(artwork) {
     const artCard = document.createElement("div");
     artCard.className = `art-card ${artwork.featured ? "featured" : ""}`;
@@ -384,14 +501,16 @@ function createGenreModal(genre, artworks) {
       </div>
     `;
   
-    // Add click event for viewing details
+    // Add click event for viewing details (for main gallery only)
     const viewBtn = artCard.querySelector(".art-view-btn");
-    viewBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      openArtworkModal(artwork);
-    });
-  
-    // Add click event for the entire card
+    if (viewBtn) {
+      viewBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        openArtworkModal(artwork);
+      });
+    }
+    
+    // Add click event for the entire card (for main gallery only)
     artCard.addEventListener("click", function () {
       openArtworkModal(artwork);
     });
@@ -416,7 +535,7 @@ function createGenreModal(genre, artworks) {
     // Clear previous modal content
     modalContent.innerHTML = "";
 
-    // Create slider structure
+    // Create slider structure with higher z-index
     modalContent.innerHTML = `
       <span class="modal-close" id="modalClose">&times;</span>
       <div class="slider-container">
@@ -458,8 +577,9 @@ function createGenreModal(genre, artworks) {
       </div>
     `;
 
-    // Show modal
+    // Show modal with higher z-index
     modal.style.display = "flex";
+    modal.style.zIndex = "10001"; // Higher than genre modal
     document.body.style.overflow = "hidden";
 
     // Initialize slider if multiple images
@@ -469,20 +589,24 @@ function createGenreModal(genre, artworks) {
 
     // Close modal events
     const modalClose = document.getElementById("modalClose");
-    modalClose.addEventListener("click", closeModal);
+    if (modalClose) {
+      modalClose.addEventListener("click", closeArtworkModal);
+    }
 
     modal.addEventListener("click", function (e) {
       if (e.target === modal) {
-        closeModal();
+        closeArtworkModal();
       }
     });
 
     // Close with Escape key
-    document.addEventListener("keydown", function (e) {
+    const escapeHandler = function (e) {
       if (e.key === "Escape") {
-        closeModal();
+        closeArtworkModal();
+        document.removeEventListener('keydown', escapeHandler);
       }
-    });
+    };
+    document.addEventListener("keydown", escapeHandler);
   }
 
   function initSlider(artwork) {
@@ -497,15 +621,17 @@ function createGenreModal(genre, artworks) {
     const totalSlides = artwork.images.length;
 
     function updateSlider() {
-      sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+      if (sliderTrack) {
+        sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
 
       // Update active states
       slides.forEach((slide, index) => {
-        slide.classList.toggle("active", index === currentSlide);
+        if (slide) slide.classList.toggle("active", index === currentSlide);
       });
 
       dots.forEach((dot, index) => {
-        dot.classList.toggle("active", index === currentSlide);
+        if (dot) dot.classList.toggle("active", index === currentSlide);
       });
 
       // Update counter
@@ -515,27 +641,33 @@ function createGenreModal(genre, artworks) {
     }
 
     // Next slide
-    nextBtn.addEventListener("click", () => {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      updateSlider();
-    });
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+      });
+    }
 
     // Previous slide
-    prevBtn.addEventListener("click", () => {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      updateSlider();
-    });
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+      });
+    }
 
     // Dot navigation
     dots.forEach((dot) => {
-      dot.addEventListener("click", () => {
-        currentSlide = parseInt(dot.getAttribute("data-index"));
-        updateSlider();
-      });
+      if (dot) {
+        dot.addEventListener("click", () => {
+          currentSlide = parseInt(dot.getAttribute("data-index"));
+          updateSlider();
+        });
+      }
     });
 
     // Keyboard navigation
-    document.addEventListener("keydown", (e) => {
+    const keyHandler = (e) => {
       if (e.key === "ArrowLeft") {
         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
         updateSlider();
@@ -543,20 +675,38 @@ function createGenreModal(genre, artworks) {
         currentSlide = (currentSlide + 1) % totalSlides;
         updateSlider();
       }
+    };
+    document.addEventListener("keydown", keyHandler);
+    
+    // Clean up event listener on modal close
+    const modal = document.getElementById("imageModal");
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+          const display = modal.style.display;
+          if (display === 'none') {
+            document.removeEventListener("keydown", keyHandler);
+            observer.disconnect();
+          }
+        }
+      });
     });
+    observer.observe(modal, { attributes: true });
 
     // Swipe support for touch devices
     let startX = 0;
     let endX = 0;
 
-    sliderTrack.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
-    });
+    if (sliderTrack) {
+      sliderTrack.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+      });
 
-    sliderTrack.addEventListener("touchend", (e) => {
-      endX = e.changedTouches[0].clientX;
-      handleSwipe();
-    });
+      sliderTrack.addEventListener("touchend", (e) => {
+        endX = e.changedTouches[0].clientX;
+        handleSwipe();
+      });
+    }
 
     function handleSwipe() {
       const swipeThreshold = 50;
@@ -573,10 +723,17 @@ function createGenreModal(genre, artworks) {
         updateSlider();
       }
     }
+    
+    // Initial update
+    updateSlider();
   }
 
-  function closeModal() {
+  function closeArtworkModal() {
     const modal = document.getElementById("imageModal");
-    modal.style.display = "none";
+    if (modal) {
+      modal.style.display = "none";
+      modal.style.zIndex = "10000"; // Reset z-index
+    }
     document.body.style.overflow = "";
   }
+}

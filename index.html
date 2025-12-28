@@ -282,21 +282,33 @@
           const imageUrl = artwork.images[0];
 
           slide.innerHTML = `
-                      <div class="slideshow-image-container">
-                          <img src="${imageUrl}" alt="${
-            artwork.title || "Featured Artwork"
-          }" class="slideshow-image">
-                          <div class="slide-caption">
-                              <h3 class="slide-title">${artwork.title}</h3>
-                              ${
-                                artwork.description
-                                  ? `<p class="slide-description">${artwork.description}</p>`
-                                  : ""
-                              }
-                              <p class="slide-size">${artwork.size}</p>
-                          </div>
-                      </div>
-                  `;
+            <div class="slideshow-image-container" data-genre="${artwork.genre}" data-artwork-id="${artwork.id}">
+              <img src="${imageUrl}" alt="${artwork.title || "Featured Artwork"}" class="slideshow-image">
+              <div class="slide-caption">
+                <h3 class="slide-title">${artwork.title}</h3>
+                ${artwork.description ? `<p class="slide-description">${artwork.description}</p>` : ""}
+                <p class="slide-size">${artwork.size}</p>
+              </div>
+            </div>
+          `;
+
+          // Add click event to the slide
+          slide.addEventListener('click', function(e) {
+            const container = this.querySelector('.slideshow-image-container');
+            const genre = container.getAttribute('data-genre');
+            const artworkId = container.getAttribute('data-artwork-id');
+            
+            // Store the data in sessionStorage for gallery page
+            sessionStorage.setItem('selectedGenre', genre);
+            sessionStorage.setItem('selectedArtwork', artworkId);
+            
+            // Redirect to gallery page
+            window.location.href = 'our_gallery.html';
+            
+            // Prevent any other click events
+            e.stopPropagation();
+            e.preventDefault();
+          });
 
           slideshowTrack.appendChild(slide);
 
@@ -304,6 +316,14 @@
           const dot = document.createElement("span");
           dot.className = `slideshow-dot ${index === 0 ? "active" : ""}`;
           dot.setAttribute("data-index", index);
+          
+          // Add click event to dot
+          dot.addEventListener("click", function () {
+            const index = parseInt(this.getAttribute("data-index"));
+            showSlide(index);
+            resetInterval();
+          });
+          
           slideshowDots.appendChild(dot);
         });
 
@@ -341,24 +361,26 @@
         }
 
         // Event listeners for navigation
-        nextBtn.addEventListener("click", nextSlide);
-        prevBtn.addEventListener("click", prevSlide);
-
-        // Dot navigation
-        dots.forEach((dot) => {
-          dot.addEventListener("click", function () {
-            const index = parseInt(this.getAttribute("data-index"));
-            showSlide(index);
-            resetInterval();
-          });
+        nextBtn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          nextSlide();
+          resetInterval();
+        });
+        
+        prevBtn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          prevSlide();
+          resetInterval();
         });
 
         // Keyboard navigation
         document.addEventListener("keydown", function (e) {
           if (e.key === "ArrowLeft") {
+            e.preventDefault();
             prevSlide();
             resetInterval();
           } else if (e.key === "ArrowRight") {
+            e.preventDefault();
             nextSlide();
             resetInterval();
           }
@@ -387,6 +409,16 @@
 
         slideshowContainer.addEventListener("mouseleave", function () {
           startInterval();
+        });
+        
+        // Prevent click events from propagating to parent elements
+        slideshowContainer.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+        
+        // Add cursor pointer to slideshow slides
+        slides.forEach(slide => {
+          slide.style.cursor = 'pointer';
         });
       }
     </script>
