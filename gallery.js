@@ -303,7 +303,7 @@ function initGallery() {
       title: "Yanfeng employee recognition wall",
       description: "A symbol of appreciation for the efforts, ideas, and integrity of our employees. It reflects our belief that success is built by people who are valued, respected, and recognized.",
       genre: "other",
-      images: ["images/art/conc_int5.jpg", "images/art/conc_int4_2.jpg", "images/art/conc_int4_3.jpg"],
+      images: ["images/art/conc_int6.jpg"],
       size: "Customized by style and size | Handcrafted",
       featured: true,
     },
