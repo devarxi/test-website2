@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>-
 <html lang="en">
 
 <head>
@@ -172,128 +172,13 @@
       });
     });
   </script>
+  <script src="artworks.js"></script>
   <script src="script.js"></script>
+  <script src="gallery.js"></script>
 
   <script>
     // Featured artworks data (extracted from gallery.js)
-    const featuredArtworks = [
-      {
-        id: 17,
-        title: "Haryali Trio",
-        description: "A beautiful set of three green-themed wall pieces",
-        genre: "wallpieces",
-        images: ["images/art/wallpiece4.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      },
-      {
-        id: 20,
-        title: "Midas Touch",
-        description: "Elegant golden accents on traditional artwork",
-        genre: "wallpieces",
-        images: ["images/art/wallpiece7.jpg", "images/art/wallpiece7_2.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      },
-      {
-        id: 29,
-        title: "Intertwined Devotion",
-        description: "",
-        genre: "other",
-        images: ["images/art/conc_int3.jpg", "images/art/conc_int3_2.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      },
-      {
-        id: 27,
-        title: "Play Palette",
-        description: "Colorful conceptual interior piece",
-        genre: "other",
-        images: ["images/art/conc_int1.jpg", "images/art/conc_int1_2.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      },
-      {
-        id: 28,
-        title: "Crescent Dreams",
-        description: "Dreamy moon-inspired artwork",
-        genre: "other",
-        images: ["images/art/conc_int2.jpg", "images/art/conc_int2_2.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      },
-      {
-        id: 5,
-        title: "Portrait Sketch",
-        description: "Detailed character portrait sketch",
-        genre: "sketches",
-        images: ["images/art/sketch4.jpg"],
-        size: "Customized by style and size",
-        featured: true,
-      },
-      {
-        id: 30,
-        title: "Peacock Palette",
-        description: "A conceptual artpiece made with vision of depecting",
-        genre: "other",
-        images: ["images/art/conc_int4.jpg", "images/art/conc_int4_2.jpg", "images/art/conc_int4_3.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      },
-      {
-        id: 31,
-        title: "Whispers of Gold",
-        description: "Whispers of gold is where white space becomes the canvas and gold becomes the voice. The piece reflects simplicity, refinement, and the power of understated detail, making it a calm yet striking presence in modern interiors.",
-        genre: "other",
-        images: ["images/art/conc_int5.jpg", "images/art/conc_int4_2.jpg", "images/art/conc_int4_3.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      }, {
-        id: 32,
-        title: "Yanfeng employee recognition wall",
-        description: "A symbol of appreciation for the efforts, ideas, and integrity of our employees. It reflects our belief that success is built by people who are valued, respected, and recognized.",
-        genre: "other",
-        images: ["images/art/conc_int5.jpg", "images/art/conc_int4_2.jpg", "images/art/conc_int4_3.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      },
-      {
-        id: 24,
-        title: "Kashtabhanjan hanumanji Maharaj 🚩",
-        description: "",
-        genre: "wallpieces",
-        images: ["images/art/wallpiece11.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      },
-      {
-        id: 25,
-        title: "Lippan Luxe",
-        description: "A luxurious take on traditional Lippan art, featuring intricate patterns and metallic accents.",
-        genre: "wallpieces",
-        images: ["images/art/wallpiece12.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      },
-      {
-        id: 26,
-        title: "Saptlakshmi Chinha",
-        description: "Saptlakshmi Chinha is a sacred symbol representing the seven forms of Goddess Lakshmi, each blessing a different aspect of life. Together, they signify complete prosperity, balance, and well-being.",
-        genre: "wallpieces",
-        images: ["images/art/wallpiece13.jpg"],
-        size: "Customized by style and size | Handcrafted",
-        featured: true,
-      },
-      {
-        id: 13,
-        title: "",
-        description: "a sketch reflects a perfect happy couple",
-        genre: "sketches",
-        images: ["images/art/sketch13.jpg", "images/art/sketch13_2.jpg"],
-        size: "Customized by style a-nd size",
-        featured: false,
-      },
-    ];
+    const featuredArtworks = artworks.filter(art => art.featured === true);
 
     // Initialize slideshow when DOM is loaded
     document.addEventListener("DOMContentLoaded", function () {
@@ -332,6 +217,11 @@
                           </div>
                       </div>
                   `;
+        // When this slide is clicked, go to gallery page and open the same artwork
+        slide.addEventListener('click', () => {
+          const titleParam = encodeURIComponent(artwork.title);
+          window.location.href = `our_gallery.html?artwork=${titleParam}`;
+        });
 
         slideshowTrack.appendChild(slide);
 

@@ -175,7 +175,29 @@
       </div>
     </div>
 
+    <script src="artworks.js"></script>
     <script src="script.js"></script>
     <script src="gallery.js"></script>
+    <script>
+  (function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const artworkTitle = urlParams.get('artwork');
+
+    if (artworkTitle) {
+      // Decode the title
+      const decodedTitle = decodeURIComponent(artworkTitle);
+
+      // Find the artwork in the global artworks array
+      const matchedArtwork = artworks.find(art => art.title === decodedTitle);
+
+      if (matchedArtwork) {
+        // Wait a tiny moment for the DOM to be fully ready, then open the modal
+        setTimeout(() => {
+          openArtworkModal(matchedArtwork);
+        }, 100);
+      }
+    }
+  })();
+</script>
   </body>
 </html>
